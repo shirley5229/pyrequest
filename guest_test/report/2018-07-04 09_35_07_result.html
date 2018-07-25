@@ -189,9 +189,9 @@ function showOutput(id, name) {
 
 <div class='heading'>
 <h1>Interface Test Report</h1>
-<p class='attribute'><strong>Start Time:</strong> 2018-04-10 11:47:57</p>
-<p class='attribute'><strong>Duration:</strong> 0:00:05.040140</p>
-<p class='attribute'><strong>Status:</strong> Error 5</p>
+<p class='attribute'><strong>Start Time:</strong> 2018-07-04 09:35:07</p>
+<p class='attribute'><strong>Duration:</strong> 0:00:06.409367</p>
+<p class='attribute'><strong>Status:</strong> Error 7</p>
 
 <p class='description'>Implem</p>
 </div>
@@ -275,7 +275,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000352F208&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000354DBA8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -286,12 +286,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F208&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000354DBA8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\GetEventList_Test.py", line 11, in test_get_event_success
+  File "D:\Git\pyrequest\guest_test\interface\GetEventList_Test.py", line 11, in test_get_event_success
     r=requests.get(self.url,params={"name":"1"})
   File "C:\Python35\lib\site-packages\requests\api.py", line 72, in get
     return request('get', url, params=params, **kwargs)
@@ -303,7 +303,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F208&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000354DBA8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 Traceback (most recent call last):
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 141, in _new_conn
     (self.host, self.port), self.timeout, **extra_kw)
@@ -334,7 +334,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000352F208&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000354DBA8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -345,12 +345,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F208&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000354DBA8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\GetEventList_Test.py", line 11, in test_get_event_success
+  File "D:\Git\pyrequest\guest_test\interface\GetEventList_Test.py", line 11, in test_get_event_success
     r=requests.get(self.url,params={"name":"1"})
   File "C:\Python35\lib\site-packages\requests\api.py", line 72, in get
     return request('get', url, params=params, **kwargs)
@@ -362,7 +362,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F208&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/get_event_list/?name=1 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000354DBA8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 
         </pre>
@@ -426,7 +426,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000379B0B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x0000000003566B70&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -437,12 +437,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B0B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000000003566B70&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 17, in test_add_event_all_null
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 17, in test_add_event_all_null
     r = requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -454,7 +454,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B0B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000000003566B70&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 Traceback (most recent call last):
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 141, in _new_conn
     (self.host, self.port), self.timeout, **extra_kw)
@@ -485,7 +485,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000379B0B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x0000000003566B70&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -496,12 +496,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B0B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000000003566B70&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 17, in test_add_event_all_null
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 17, in test_add_event_all_null
     r = requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -513,7 +513,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B0B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x0000000003566B70&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 
         </pre>
@@ -568,7 +568,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000352F1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000000035C67B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -579,12 +579,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C67B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 35, in test_add_event_dataType_error
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 35, in test_add_event_dataType_error
     r=requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -596,7 +596,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C67B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 Traceback (most recent call last):
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 141, in _new_conn
     (self.host, self.port), self.timeout, **extra_kw)
@@ -627,7 +627,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000352F1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000000035C67B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -638,12 +638,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C67B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 35, in test_add_event_dataType_error
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 35, in test_add_event_dataType_error
     r=requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -655,7 +655,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000352F1D0&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C67B8&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 
         </pre>
@@ -710,7 +710,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000379B080&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000353CF60&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -721,12 +721,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B080&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000353CF60&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 26, in test_add_event_name_exist
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 26, in test_add_event_name_exist
     r=requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -738,7 +738,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B080&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000353CF60&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 Traceback (most recent call last):
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 141, in _new_conn
     (self.host, self.port), self.timeout, **extra_kw)
@@ -769,7 +769,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000379B080&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000353CF60&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -780,12 +780,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B080&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000353CF60&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 26, in test_add_event_name_exist
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 26, in test_add_event_name_exist
     r=requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -797,7 +797,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379B080&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000353CF60&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 
         </pre>
@@ -852,7 +852,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000379BE80&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000000035C6978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -863,12 +863,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379BE80&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C6978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 44, in test_add_event_success
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 44, in test_add_event_success
     r=requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -880,7 +880,7 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379BE80&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C6978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 Traceback (most recent call last):
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 141, in _new_conn
     (self.host, self.port), self.timeout, **extra_kw)
@@ -911,7 +911,7 @@ Traceback (most recent call last):
     conn = self._new_conn()
   File "C:\Python35\lib\site-packages\urllib3\connection.py", line 150, in _new_conn
     self, "Failed to establish a new connection: %s" % e)
-urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x000000000379BE80&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
+urllib3.exceptions.NewConnectionError: &lt;urllib3.connection.HTTPConnection object at 0x00000000035C6978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。
 
 During handling of the above exception, another exception occurred:
 
@@ -922,12 +922,12 @@ Traceback (most recent call last):
     _stacktrace=sys.exc_info()[2])
   File "C:\Python35\lib\site-packages\urllib3\util\retry.py", line 388, in increment
     raise MaxRetryError(_pool, url, error or ResponseError(cause))
-urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379BE80&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+urllib3.exceptions.MaxRetryError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C6978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
 
 During handling of the above exception, another exception occurred:
 
 Traceback (most recent call last):
-  File "D:\Git\pyrequest\interface\add_event_test.py", line 44, in test_add_event_success
+  File "D:\Git\pyrequest\guest_test\interface\add_event_test.py", line 44, in test_add_event_success
     r=requests.post(self.base_url,data=payload)
   File "C:\Python35\lib\site-packages\requests\api.py", line 112, in post
     return request('post', url, data=data, json=json, **kwargs)
@@ -939,7 +939,112 @@ Traceback (most recent call last):
     r = adapter.send(request, **kwargs)
   File "C:\Python35\lib\site-packages\requests\adapters.py", line 508, in send
     raise ConnectionError(e, request=request)
-requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000000000379BE80&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /api/add_event/ (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000000035C6978&gt;: Failed to establish a new connection: [WinError 10061] 由于目标计算机积极拒绝，无法连接。',))
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr class='errorClass'>
+    <td>httpbin_test.AddEventTest: 添加发布会.</td>
+    <td>2</td>
+    <td>0</td>
+    <td>0</td>
+    <td>2</td>
+    <td><a href="javascript:showClassDetail('c3',2)">Detail</a></td>
+</tr>
+
+<tr id='ft3.1' class='none'>
+    <td class='errorCase'><div class='testcase'>test_add_event_all_null: 所有参数为空</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.1')" >
+        error</a>
+
+    <div id='div_ft3.1' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.1').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.1: Traceback (most recent call last):
+  File "D:\Git\pyrequest\guest_test\interface\httpbin_test.py", line 18, in test_add_event_all_null
+    result=r.json()
+  File "C:\Python35\lib\site-packages\requests\models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Python35\lib\json\__init__.py", line 319, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python35\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python35\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "D:\Git\pyrequest\guest_test\interface\httpbin_test.py", line 18, in test_add_event_all_null
+    result=r.json()
+  File "C:\Python35\lib\site-packages\requests\models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Python35\lib\json\__init__.py", line 319, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python35\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python35\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+
+        </pre>
+    </div>
+    <!--css div popup end-->
+
+    </td>
+</tr>
+
+<tr id='ft3.2' class='none'>
+    <td class='errorCase'><div class='testcase'>test_add_event_name_exist: 名称已经存在</div></td>
+    <td colspan='5' align='center'>
+
+    <!--css div popup start-->
+    <a class="popup_link" onfocus='this.blur();' href="javascript:showTestDetail('div_ft3.2')" >
+        error</a>
+
+    <div id='div_ft3.2' class="popup_window">
+        <div style='text-align: right; color:red;cursor:pointer'>
+        <a onfocus='this.blur();' onclick="document.getElementById('div_ft3.2').style.display = 'none' " >
+           [x]</a>
+        </div>
+        <pre>
+        
+ft3.2: Traceback (most recent call last):
+  File "D:\Git\pyrequest\guest_test\interface\httpbin_test.py", line 27, in test_add_event_name_exist
+    result = r.json( )
+  File "C:\Python35\lib\site-packages\requests\models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Python35\lib\json\__init__.py", line 319, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python35\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python35\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+Traceback (most recent call last):
+  File "D:\Git\pyrequest\guest_test\interface\httpbin_test.py", line 27, in test_add_event_name_exist
+    result = r.json( )
+  File "C:\Python35\lib\site-packages\requests\models.py", line 892, in json
+    return complexjson.loads(self.text, **kwargs)
+  File "C:\Python35\lib\json\__init__.py", line 319, in loads
+    return _default_decoder.decode(s)
+  File "C:\Python35\lib\json\decoder.py", line 339, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "C:\Python35\lib\json\decoder.py", line 357, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
 
 
         </pre>
@@ -951,10 +1056,10 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='127.0.0.1', port=8
 
 <tr id='total_row'>
     <td>Total</td>
-    <td>5</td>
+    <td>7</td>
     <td>0</td>
     <td>0</td>
-    <td>5</td>
+    <td>7</td>
     <td>&nbsp;</td>
 </tr>
 </table>
