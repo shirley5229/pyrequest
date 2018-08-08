@@ -3,11 +3,11 @@ sys.path.append('../db_fixture')
 from .oracle_db import DB
 
 #根据会诊序号，获取会诊ID、会诊状态
-def getPrimInfo(oracleConf,prim_no):
+def getPrimInfo(oracleConf,primid):
     db=DB(oracleConf)
     searchCon=('PR.PRIM_ID AS "primid",PR.PRIM_STATUS AS "primStatus"')
     table_name=' TMS_CONS_PRIMARY PR '
-    whereCon="PR.prim_no= '"+prim_no+"'"
+    whereCon="PR.PRIM_ID= '"+primid+"'"
 
     data=db.search(table_name,searchCon,whereCon)
     db.close()
@@ -25,12 +25,12 @@ def gethospitalID(oracleConf,hospitalName):
     return data
 
 #获取会诊基础数据
-def getConsultation(oracleConf,prim_no):
+def getConsultation(oracleConf,primid):
     db=DB(oracleConf)
     searchCon=('PR.PRIM_ID AS "primid",p.pati_id AS "patientid",p.pati_no AS "patientno",p.pati_name AS "patientname",P.PATI_AGE AS "patientage",'+\
        'P.PATI_AGE_UNIT AS "patientageunitid",P.PATI_GENDER AS "patientgender",P.PATI_BIRTHDAY AS "patientbirthday",P.PATI_TEL AS "patientphone",'+\
        'P.PATI_ADDRESS AS "patientaddress",P.PATI_IDENTITY AS "idnumber",P.PATI_PROFESSION AS "job",P.PATI_FOLK AS "patientfolk",PR.PRIM_IMPORTANT AS "vip",'+\
-       'P.PATI_NATION AS "patientnation",P.PATI_HEIGHT AS "patientheight",P.PATI_WEIGHT AS "patientweight",PR.APPLY_TIME AS "consstart",'+\
+       'P.PATI_NATION AS "patientnation",P.PATI_HEIGHT AS "patientheight",P.PATI_WEIGHT AS "patientweight",PR.APPLY_TIME AS "applytime",'+\
        'P.CLIN_CHIEF_COMPLAINT   AS "chiefcomplaint",'+\
        'P.CLIN_MEDICAL_HISTORY   AS "clinmedicalhistory",'+\
        'P.CLIN_PAST_HISTORY   AS "pasthistory",'+\
@@ -51,45 +51,58 @@ def getConsultation(oracleConf,prim_no):
        'PR.APPLY_DEPTID AS "reqdepartmentid",PR.SELF_DEPT AS "reqdepartment",PR.SELF_DOC AS "reqdoc",PR.SELF_DOCTEL AS "reqtelphone",PR.CONS_TYPE AS "diagtype",'+\
        'PR.PRIM_APPOINTED AS "consultationtypeid",P.PATI_HOSPITALIZED_TIME AS "inoroutdate",P.PATI_HEALTHCARE_TYPE AS "healthcaretype",P.PATI_HCTID AS "hctid"')
     table_name='tms_cons_patient p JOIN TMS_CONS_PRIMARY PR ON  P.PRIM_ID=PR.PRIM_ID '
-    whereCon="PR.prim_no= '"+prim_no+"'"
+    whereCon="PR.PRIM_ID= '"+primid+"'"
 
     data=db.search(table_name,searchCon,whereCon)
     db.close()
     return data
 
 #获取影像数据
-def getImageexam(oracleConf,prim_no):
+def getImageexam(oracleConf,primid):
     db=DB(oracleConf)
-    searchCon=('I.XEGUID AS "xeguid",I.STUDYTIME AS "studytime",I.DEVICENAME AS "devicename",I.DEVICETYPENAME AS "devicetypename",'+\
-       'I.STUDYDESCRIBE AS "studydescribe",I.STUDYID AS "studyid",I.STUDYINSTANCEUID AS "studyinstanceuid",I.URL AS "url"')
+    searchCon=('I.XEGUID AS "xeguid",'+\
+    'I.STUDYTIME AS "studytime",'+\
+    'I.DEVICENAME AS "devicename",'+\
+    'I.DEVICETYPENAME AS "devicetypename",'+\
+    'I.STUDYDESCRIBE AS "studydescribe",'+\
+    'I.STUDYID AS "studyid",'+\
+    'I.STUDYINSTANCEUID AS "studyinstanceuid",'+\
+    'I.URL AS "url"')
     table_name='TMS_CONS_IMAGEEXAMINFO I JOIN TMS_CONS_PRIMARY PR ON I.PRIM_ID=PR.PRIM_ID'
-    whereCon="PR.prim_no= '"+prim_no+"'"
+    whereCon="PR.PRIM_ID= '"+primid+"'"
 
     data=db.search(table_name,searchCon,whereCon)
     db.close()
     return data
 
 #获取病理数据
-def getPathology(oracleConf,prim_no):
+def getPathology(oracleConf,primid):
     db=DB(oracleConf)
     searchCon=('PA.SEND_TYPE AS "sampleinfo",PA.SAMPLE_TYPE AS "sampletype",PA.SAMPLE_CONDITION AS "samplecondition",PA.SAMPLE_PART AS "samplepart",'+\
        'PA.SAMPLE_NUM AS "partcount",PA.PART_UNIT AS "partunit",PA.SEND_DOCTOR AS "applydoctor",PA.SEND_HOSPITAL AS "applyhospital",'+\
        'PA.SAMPLE_TIME AS "operatetime",PA.DYE AS "staining",PA.IMMUNO AS "immunohistochemical",PA.SURGERY_RECORD AS "surgeryrecord",'+\
        'PA.GENERAL_SHOW AS "allshow"')
     table_name='Tms_Cons_Pathology PA JOIN TMS_CONS_PRIMARY PR ON PA.PRIM_ID=PR.PRIM_ID'
-    whereCon="PR.prim_no= '"+prim_no+"'"
+    whereCon="PR.PRIM_ID= '"+primid+"'"
 
     data=db.search(table_name,searchCon,whereCon)
     db.close()
     return data
 
 #获取附件数据
-def getAttechment(oracleConf,prim_no,filename=''):
+def getAttechment(oracleConf,primid,filename=''):
     db=DB(oracleConf)
-    searchCon=('A.FILENAME AS "filename",A.FILETYPE AS "attachmenttype",A.FILEMD5 AS "md5",'+\
-       'A.EXAMTYPE AS "Examtype",A.IMAGETYPE AS "Imagetype",A.CHECKSYSTEM AS "checksystem",A.DESCRIBE AS "describe",PR.PRIM_ID AS "srcsid"')
+    searchCon=('A.FILENAME AS "filename",'+\
+    'A.Attechmenttype AS "attechmenttype",'+\
+    'A.FILEMD5 AS "filemd5",'+\
+    'A.EXAMTYPE AS "Examtype",'+\
+    'A.IMAGETYPE AS "Imagetype",'+\
+    'A.CHECKSYSTEM AS "checksystem",'+\
+    'A.DESCRIBE AS "describe",'+\
+    'A.ID AS "id",'+\
+    'PR.CONSULTATION_ID AS "srcsid"')
     table_name='tms_attachment A LEFT JOIN TMS_CONS_PRIMARY PR ON A.BIZID=PR.PRIM_ID '
-    whereCon="PR.prim_no= '"+prim_no+"' "
+    whereCon="PR.PRIM_ID= '"+primid+"' "
     if filename:
         whereCon +=" AND A.FILENAME='"+filename+"'"
     data=db.search(table_name,searchCon,whereCon)
@@ -103,61 +116,41 @@ def getStepReject(oracleConf,prim_no):
        'R.REJECT_REASON AS "rejectcause",R.REMARK AS "remark"')
     table_name=('TMS_CONS_PRIMARY PR RIGHT JOIN tms_step_record R ON R.PRIM_ID = PR.PRIM_ID'+\
         ' JOIN TMS_USER U ON R.OPERATORID=U.USER_ID')
-    whereCon="R.REJECT_FLAG=1 AND PR.prim_no= '"+prim_no+"' ORDER BY R.CREATE_TIME desc) WHERE ROWNUM <= 1"
+    whereCon="R.REJECT_FLAG=1 AND PR.PRIM_ID= '"+primid+"' ORDER BY R.CREATE_TIME desc) WHERE ROWNUM <= 1"
     data=db.search(table_name,searchCon,whereCon)
     db.close()
     return data
 
 #获取会诊状态
-def getStepStatus(oracleConf,prim_no):
+def getStepStatus(oracleConf,primid):
     db=DB(oracleConf)
     searchCon=('* FROM (SELECT PR.PRIM_ID AS "id",PR.PRIM_STATUS AS "status",R.OPERATORID AS "consUserId",R.REMARK AS "remark",'+\
        'CASE PR.PRIM_STATUS WHEN \'10\' THEN \'会诊申请\' WHEN \'20\' THEN \'前质控\'  WHEN \'25\' THEN \'科室分诊\' WHEN \'30\' THEN \'分配完成\' '
        'WHEN \'40\' THEN \'报告完成\' WHEN \'50\' THEN \'后质控完成\' END AS "statusName"')
     table_name=('TMS_CONS_PRIMARY PR RIGHT JOIN tms_step_record R ON R.PRIM_ID = PR.PRIM_ID')
-    whereCon="R.REJECT_FLAG=0 AND PR.prim_no= '"+prim_no+"' ORDER BY R.CREATE_TIME desc) WHERE ROWNUM <= 1"
+    whereCon="R.REJECT_FLAG=0 AND PR.PRIM_ID= '"+primid+"' ORDER BY R.CREATE_TIME desc) WHERE ROWNUM <= 1"
     data=db.search(table_name,searchCon,whereCon)
     db.close()
     return data
 
 #sendConsultation中assigninfo节点
-def getTriage(oracleConf,prim_no):
+def getTriage(oracleConf,primid):
     db=DB(oracleConf)
-    searchCon=('T.TRIA_ID AS "tria_id",'+\
-    'T.PRIM_ID AS "prim_id",'+\
-    'T.TRIA_HOSPID AS "tria_hospid",'+\
+    searchCon=('T.TRIA_HOSPID AS "tria_hospid",'+\
     'T.TRIA_DEPTID AS "tria_deptid",'+\
     'T.TRIA_SUBDEPTID AS "tria_subdeptid",'+\
     'T.TRIA_DOCID AS "tria_docid", '+\
-    'H.HOSPITAL_NAME AS "tria_hospname",'+\
-    'D.DEPARTMENT_NAME AS "tria_deptname",'+\
-    'SD.SUBDEPT_NAME AS "tria_subdeptname",'+\
-    'U.USER_NAME AS "tria_docname",  '+\
-    'H.HOSPITAL_PROVINCE AS "hospital_province",'+\
     'T.TRIA_DEPTTYPE_ID AS "tria_depttype_id",'+\
-    'T.TRIA_MAIN AS "tria_main",'+\
-    'T.TRIA_TYPE AS "tria_type",'+\
-    'T.START_TIME AS "start_time",  '+\
-    'T.END_TIME AS "end_time",'+\
-    'T.ROOM_ID AS "room_id",'+\
-    'T.FLAG AS "flag",'+\
-    'T.CREATE_TIME AS "create_time",'+\
-    'T.UPDATE_TIME AS "update_time",'+\
-    'T.CREATE_OPERATOR AS "create_operator",'+\
-    'T.UPDATE_OPERATOR AS  "update_operator"  ')
+    'T.TRIA_MAIN AS "tria_main" ')
     table_name=(' TMS_CONS_TRIAGE T  '+\
-    ' JOIN TMS_CONS_PRIMARY PR ON T.PRIM_ID = PR.PRIM_ID'+\
-    ' JOIN TMS_HOSPITAL H ON T.TRIA_HOSPID = H.HOSPITAL_ID'+\
-    ' JOIN TMS_DEPARTMENT D ON T.TRIA_DEPTID = D.DEPARTMENT_ID AND D.DEPT_HOSPITAL_ID=H.HOSPITAL_ID'+\
-    ' JOIN TMS_SUBDEPARTMENT SD ON T.TRIA_SUBDEPTID=SD.SUBDEPT_ID AND SD.SUBDEPT_DEPT_ID= D.DEPARTMENT_ID'+\
-    ' LEFT JOIN TMS_USER U ON T.TRIA_DOCID = U.USER_ID ')
-    whereCon="PR.prim_no= '"+prim_no+"' "
+    ' JOIN TMS_CONS_PRIMARY PR ON T.PRIM_ID = PR.PRIM_ID ')
+    whereCon="PR.PRIM_ID= '"+primid+"' "
     data=db.search(table_name,searchCon,whereCon)
     db.close()
     return data
 
 #saveConsultation中assigninfo节点
-def getSaveTriage(oracleConf,prim_no):
+def getSaveTriage(oracleConf,primid):
     db=DB(oracleConf)
     searchCon=('T.TRIA_HOSPID  AS "assignhospitalid",'+\
        'T.TRIA_DEPTID   AS "assigndepartmentid",'+\
@@ -167,43 +160,54 @@ def getSaveTriage(oracleConf,prim_no):
        'T.TRIA_MAIN    AS "assigntriamain"')
     table_name=(' TMS_CONS_TRIAGE T  '+\
     ' JOIN TMS_CONS_PRIMARY PR ON T.PRIM_ID = PR.PRIM_ID')
-    whereCon="PR.prim_no= '"+prim_no+"' "
+    whereCon="PR.PRIM_ID= '"+primid+"' "
     data=db.search(table_name,searchCon,whereCon)
     db.close()
     return data
 
-#执行测试前，删除会诊端数据
+#执行测试前，根据primid删除会诊端数据
 def deleteConsData(oracleConf,primid):
     db=DB(oracleConf)
-
     #删除业务数据
     whereCon = " PRIM_ID ='"+primid+"'"
-    whereCon2 = " BIZID ='"+primid+"'"
     tables=['tms_cons_comments','tms_cons_imageexaminfo','tms_cons_pathologyexaminfo','tms_cons_patient',
     'tms_cons_triage','tms_step_record','tms_cons_report','tms_cons_primary']
     for table_name in tables:
         db.delete(table_name,whereCon)
-    db.delete('tms_attachment',whereCon2)
-    #删除工作流
+    #删除附件
+    searchCon=" filemd5"
+    table_name="tms_attachment"
+    whereCon = " BIZID ='"+primid+"'"
+    try:
+        consdata=db.search(table_name,searchCon,whereCon)
+    except:
+        pass
+    else:
+        oradata=consdata['data']
+        for md5 in oradata:
+            whereCon2 = " md5='"+md5['FILEMD5']+"'"
+            db.delete('SFS_FILE',whereCon2)
+    db.delete('tms_attachment',whereCon)
+    #删除工作流，否则数据没法重复使用
     searchCon=" OID"
     table_name="WF_BUSS_ORDER"
     whereCon="bid = '"+primid+"'"
-    consdata=db.search(table_name,searchCon,whereCon)
-    oradata=consdata['data'][0]
-    oid=oradata['OID']  #获取工作流ID
+    try:
+        consdata=db.search(table_name,searchCon,whereCon)
+    except:
+        pass
+    else:
+        oradata=consdata['data'][0]
+        oid=oradata['OID']  #获取工作流ID
 
-    whereCon="order_id ='"+oid+"'"
-    table_name="wf_task"
-    db.delete(table_name,whereCon)
-    whereCon="order_id ='"+oid+"'"
-    table_name="wf_hist_task"
-    db.delete(table_name,whereCon)
-    whereCon="id ='"+oid+"'"
-    table_name="WF_ORDER"
-    db.delete(table_name,whereCon)
-    whereCon="oid ='"+oid+"'"
-    table_name="WF_BUSS_ORDER"
-    db.delete(table_name,whereCon)
+        whereCon="order_id ='"+oid+"'"
+        db.delete("wf_task",whereCon)
+        whereCon="order_id ='"+oid+"'"
+        db.delete("wf_hist_task",whereCon)
+        whereCon="id ='"+oid+"'"
+        db.delete("WF_ORDER",whereCon)
+        whereCon="oid ='"+oid+"'"
+        db.delete("WF_BUSS_ORDER",whereCon)
 
 if __name__=='__main__':
-    deleteConsData('consOracleConf','5ed66b5416e84079aca68fd3e499d28f')
+    deleteConsData('consOracleConf','49371f3c97624bfeb141e582d7955d40')

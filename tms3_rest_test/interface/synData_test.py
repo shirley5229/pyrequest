@@ -14,14 +14,14 @@ from public import log
 
 
 class DataSynTest(unittest.TestCase):
-    """会诊端接收，机构信息同步测试"""
+    """机构信息同步，获取会诊端数据"""
     def setUp(self):
         self.dbConfig = "consOracleConf"
         self.logicName = "dataSyn"
         self.log = log.setLog()
 
     def test_success(self):
-        ''' 正常获取token'''
+        ''' 正确性测试'''
         self.log.info(self.logicName+':正确性测试')
         params=self.getParam('上海交通大学医学院附属瑞金医院')
         result=httpRequest.postRequest(config.consdata_url,params)

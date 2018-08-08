@@ -8,21 +8,19 @@ parentdir = parentdir.split('\interface')[0]
 sys.path.insert(0,parentdir)
 from db_fixture import test_data
 
-
-def  getPrimStatus(dbConfig,prim_no):
+def  getPrimStatus(dbConfig,primid):
     '''获取单据状态，用于断言 '''
-    consdata = test_data.getPrimInfo(dbConfig,prim_no)
+    consdata = test_data.getPrimInfo(dbConfig,primid)
     oradata = consdata['data'][0]
     return oradata['primStatus']
 
-def  getPrimExist(dbConfig,prim_no):
+def  getPrimExist(dbConfig,primid):
     '''获取单据是否存在，用于断言 '''
-    consdata = test_data.getPrimInfo(dbConfig,prim_no)
+    consdata = test_data.getPrimInfo(dbConfig,primid)
     oradata = consdata['rowcount']
     return oradata
 
-def  getFileExist(dbConfig,prim_no,filename):
+def  getFileID(dbConfig,primid,filename):
     '''获取附件是否存在，用于断言 '''
-    consdata = test_data.getAttechment(dbConfig,prim_no,filename)
-    oradata = consdata['count']
-    return oradata
+    consdata = test_data.getAttechment(dbConfig,primid,filename)
+    return consdata

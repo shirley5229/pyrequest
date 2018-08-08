@@ -12,13 +12,14 @@ from db_fixture import test_data
 log = log.setLog()
 
 #组织参数
-#prim_no   根据会诊序号在申请端数据库查询数据
-#imageexam   在申请端数据库查询数据
-#pathology    在申请端数据库查询数据
-#attechment    在申请端数据库查询数据
+#primid   根据会诊ID在申请端数据库查询数据
+#imageexam   是否传递影像
+#pathology    是否传递病理
+#attechment    是否传递附件
+#nullID     必填项为空测试
 #excelRow     异常测试，在Excel中读取数据
-def getParam(dbConfig,logicName,prim_no="",imageexam=0,pathology=0,attechment=0,
-excelRow=0,nullID="",errorID=""):
+def getParam(dbConfig,logicName,primid="",imageexam=0,pathology=0,attechment=0,
+excelRow=0,nullID=""):
     params={"LOGICNAME":logicName}
     params["TOKEN"]=""
     params["MESSAGEID"]=""
@@ -31,7 +32,7 @@ excelRow=0,nullID="",errorID=""):
     if excelRow:
         oradata= excelOperation.getRowData("/data/consultationData.xlsx","data",1)
     else:
-        consdata=test_data.getConsultation(dbConfig,prim_no)
+        consdata=test_data.getConsultation(dbConfig,primid)
         oradata = consdata["data"][0]
 
     data["primid"]=oradata["primid"]
@@ -52,8 +53,9 @@ excelRow=0,nullID="",errorID=""):
     data['patientnation']=oradata['patientnation']
     data["patientheight"] = str(oradata["patientheight"])
     data["patientweight"] = str(oradata["patientweight"])
-    if oradata["consstart"]:
-        data["consstart"] = oradata["consstart"].strftime("%Y-%m-%d")
+
+    if oradata["applytime"]:
+        data["applytime"] = oradata["applytime"].strftime("%Y-%m-%d")
     #临床病例
     data["chiefcomplaint"] = oradata["chiefcomplaint"]
     data["clinmedicalhistory"]=oradata["clinmedicalhistory"]
@@ -67,6 +69,7 @@ excelRow=0,nullID="",errorID=""):
     data["takenmedicien"] = oradata["takenmedicien"]
     data["treatmentprocess"] = oradata["treatmentprocess"]
     data["chiefphysician"] = oradata["chiefphysician"]
+    #end 临床病例
     data["reqconsult"] = oradata["reqconsult"]
     data["supplementinstruction"] = oradata["supplementinstruction"]
     data["patientstatusid"] = oradata["patientstatusid"]
@@ -77,7 +80,7 @@ excelRow=0,nullID="",errorID=""):
     data["emergency"] = oradata["emergency"]
     data["applytype"] = oradata["applytype"]
     data["isschedule"] = oradata["isschedule"]
-    data["requserid"] = "74ddaddc922d45d5bd1e6f4560d96ab8"  #oradata["requserid"]
+    data["requserid"] = config.requserid  #requserid在程序中写死
     data["reqhospitalid"]=oradata["reqhospitalid"]
     data["reqhospital"]= oradata["reqhospital"]
     data["reqdepartmentid"]= oradata["reqdepartmentid"]
@@ -92,56 +95,29 @@ excelRow=0,nullID="",errorID=""):
     data["healthcaretype"]=oradata["healthcaretype"]
     data["hctid"]=oradata["hctid"]
 
+    #只测试primid为空
     if nullID=='primid':
         data["primid"]=''
-
-    if errorID=="patientbirthday":
-        data["patientbirthday"] = "2018/6/26"
-    elif errorID=="consstart":
-        data["consstart"] = "20180626"
-    elif errorID=="inoroutdate":
-        data["inoroutdate"] = "26/6/2018"
-    elif errorID=="requserid":
-        data["requserid"] = "1111111111"
-    elif errorID=="reqhospitalid":
-        data["reqhospitalid"] = "222222222"
-    elif errorID=="reqdepartmentid":
-        data["reqdepartmentid"] = "33333333333"
 
     assignlist=[]
     assigninfo={}
     if logicName=='sendConsultation':
-        assignRes=test_data.getTriage(dbConfig,prim_no)
+        assignRes=test_data.getTriage(dbConfig,primid)
         listData=assignRes["data"]
         for assigndata in listData:
-            assigninfo["tria_id"] = assigndata["tria_id"]
-            assigninfo["prim_id"] = assigndata["prim_id"]
             assigninfo["tria_hospid"] = assigndata["tria_hospid"]
             assigninfo["tria_deptid"] = assigndata["tria_deptid"]
             assigninfo["tria_subdeptid"] = assigndata["tria_subdeptid"]
             assigninfo["tria_docid"] = assigndata["tria_docid"]
-            assigninfo["tria_hospname"] = assigndata["tria_hospname"]
-            assigninfo["tria_deptname"] = assigndata["tria_deptname"]
-            assigninfo["tria_subdeptname"] = assigndata["tria_subdeptname"]
-            assigninfo["tria_docname"] = assigndata["tria_docname"]
-            assigninfo["hospital_province"] = assigndata["hospital_province"]
             assigninfo["tria_main"] = assigndata["tria_main"]
-            assigninfo["tria_type"] = assigndata["tria_type"]
-            assigninfo["prim_id"] = assigndata["prim_id"]
-            if assigndata["start_time"]:
-                assigninfo["start_time"] = assigndata["start_time"].strftime("%Y-%m-%d")
-            assigninfo["end_time"] = assigndata["end_time"]
-            assigninfo["room_id"] = assigndata["room_id"]
-            assigninfo["flag"] = assigndata["flag"]
-            if assigndata["create_time"]:
-                assigninfo["create_time"] = assigndata["create_time"].strftime("%Y-%m-%d")
-            if assigndata["update_time"]:
-                assigninfo["update_time"] = assigndata["update_time"].strftime("%Y-%m-%d")
-            assigninfo["create_operator"] = assigndata["create_operator"]
-            assigninfo["update_operator"] = assigndata["update_operator"]
+            assigninfo["tria_depttype_id"] = assigndata["tria_depttype_id"]
+
+            if nullID == 'assigndepartmentid':
+                assigninfo["tria_subdeptid"] = ''
+                assigninfo["tria_deptid"] = ''
             assignlist.append(assigninfo)
     if logicName=='saveConsultation':
-        assignRes=test_data.getSaveTriage(dbConfig,prim_no)
+        assignRes=test_data.getSaveTriage(dbConfig,primid)
         listData=assignRes["data"]
         for assigndata in listData:
             assigninfo["assignhospitalid"] = assigndata["assignhospitalid"]
@@ -150,12 +126,16 @@ excelRow=0,nullID="",errorID=""):
             assigninfo["assigndocid"] = assigndata["assigndocid"]
             assigninfo["assigndepttypeid"] = assigndata["assigndepttypeid"]
             assigninfo["assigntriamain"] = assigndata["assigntriamain"]
+
+            if nullID =='assigndepartmentid':
+                assigninfo["assigndepartmentid"] = ''
+                assigninfo["assignsubdeptid"] = ''
             assignlist.append(assigninfo)
     data["assigninfo"]=assignlist
 
-    #影像
+    #传输影像数据
     if imageexam:
-        imageexamRes=test_data.getImageexam(dbConfig,prim_no)
+        imageexamRes=test_data.getImageexam(dbConfig,primid)
         listData=imageexamRes["data"]
         imageexamlist=[]
         for imagedata in listData:
@@ -172,9 +152,9 @@ excelRow=0,nullID="",errorID=""):
             imageexamlist.append(imageexam)
         data["imageexam"]=imageexamlist
 
-    #病理
+    #传输病理数据
     if pathology:
-        pathologyRes=test_data.getPathology(dbConfig,prim_no)
+        pathologyRes=test_data.getPathology(dbConfig,primid)
         listData=pathologyRes["data"]
         pathologylist=[]
         for pathologydata in listData:
@@ -196,21 +176,29 @@ excelRow=0,nullID="",errorID=""):
             pathologylist.append(pathology)
         data["pathology"]=pathologylist
 
-    #附件
+    #传输附件数据
     if attechment:
-        attechmentRes=test_data.getAttechment(dbConfig,prim_no)
+        attechmentRes=test_data.getAttechment(dbConfig,primid)
         listData=attechmentRes["data"]
         attechmentlist=[]
         for attechmentdata in listData:
             attechment={}
             attechment["filename"]=attechmentdata["filename"]
-            attechment["attachmenttype"]=attechmentdata["attachmenttype"]
-            attechment["url"]= config.file_url+"md5="+attechmentdata['md5']+"&bizId="+attechmentdata['srcsid']
-            attechment["md5"]=attechmentdata["md5"]
             attechment["Examtype"]=attechmentdata["Examtype"]
             attechment["Imagetype"]=attechmentdata["Imagetype"]
             attechment["checksystem"]=attechmentdata["checksystem"]
             attechment["describe"]=attechmentdata["describe"]
+
+            if logicName=='sendConsultation':
+                attechment["attechmenttype"]=attechmentdata["attechmenttype"]
+                attechment["sourceurl"]= config.file_url+"md5="+attechmentdata['filemd5']+"&bizId="+attechmentdata['srcsid']
+                attechment["filemd5"]=attechmentdata["filemd5"]
+            elif logicName == 'saveConsultation':
+                attechment["attachmenttype"]=attechmentdata["attechmenttype"]
+                attechment["url"]= config.file_url+"md5="+attechmentdata['filemd5']+"&bizId="+attechmentdata['srcsid']
+                attechment["md5"]=attechmentdata["filemd5"]
+            else:
+                raise('logicName传入错误')
             attechmentlist.append(attechment)
         data["attechmentlist"]=attechmentlist
 

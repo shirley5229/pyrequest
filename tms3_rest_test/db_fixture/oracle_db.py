@@ -6,6 +6,7 @@ import json
 os.environ['NLS_LANG'] ='SIMPLIFIED CHINESE_CHINA.UTF8'
 #========读取 db_config.ini 文件=======
 def getdbConfig(oracleConf):
+    '''存在多个数据库配置信息，根据oracleConf区分'''
     base_dir = str(os.path.dirname(os.path.dirname(__file__)))
     base_dir = base_dir.replace('\\','/')
     file_path = base_dir + "/db_config.ini"
@@ -18,6 +19,7 @@ def getdbConfig(oracleConf):
     port = cf.get(oracleConf,"port")
     user = cf.get(oracleConf,"user")
     password = cf.get(oracleConf,"password")
+    #'tms3/tms3@172.16.161.113:1521/orcl'
     info = user+'/'+password+'@'+host+':'+port+'/orcl'
     return info
 
@@ -26,14 +28,13 @@ def getdbConfig(oracleConf):
 class DB:
     """Oracle基础操作."""
     def __init__(self,oracleConf):
-        #'tms3/tms3@172.16.161.113:1521/orcl'
         info=getdbConfig(oracleConf)
         self.connection =cx_Oracle.connect(info)
 
     def clear(self,table_name):
         '''清空表数据'''
-        #real_sql = "truncate table"+table_name+";"
-        real_sql = "delete from "+table_name+";"
+        real_sql = "truncate table"+table_name+";"
+        #real_sql = "delete from "+table_name+";"
         with self.connection.cursor() as cursor:
             cursor.execute("SET FOREIGN_KEY_CHECKS=0;")
             cursor.execute(real_sql)
@@ -46,10 +47,9 @@ class DB:
         cursor= self.connection.cursor()
         cursor.execute(real_sql)
 
-        fields=cursor.description
-        row = cursor.fetchall()
-        rowcount = cursor.rowcount
-        #print(row)
+        fields=cursor.description  #获取字段
+        row = cursor.fetchall()  #获取数据
+        rowcount = cursor.rowcount  #获取查询行数
         if rowcount == 0:
             raise Exception('查询结果为空')
 
@@ -59,6 +59,7 @@ class DB:
             data={}
             for i in range(len(fields)):
                 if eachrow[i]==None:
+                    #当前字段内容为空，传入空字符串"",而不是None，方便JSON转化
                     data[fields[i][0]]=""
                 else:
                     data[fields[i][0]]=eachrow[i]
@@ -67,6 +68,7 @@ class DB:
         data={}
         data['rowcount'] = rowcount  #存储查询结果行数
         data['data']=list       #存储查询数据
+        #{"data":[{"id":001,"name":"Max"},{"id":002,"name":"John"},……],"rowcount":2}
         print('查询结果为:' + str(data))
         cursor.close()
         return data
