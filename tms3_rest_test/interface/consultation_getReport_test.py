@@ -14,8 +14,8 @@ from public import log
 
 class GetConsultationReportTest(unittest.TestCase):
     """接受会诊报告获取,异常性测试"""
-    def setUp(self):
-        self.dbConfig = "consOracleConf"
+    @classmethod
+    def setUpClass(self):
         self.logicName = "getConsultationReport"
         self.log = log.setLog()
 
@@ -23,7 +23,7 @@ class GetConsultationReportTest(unittest.TestCase):
     def test_getReport(self):
         ''' 正确性测试'''
         self.log.info(self.logicName+':正确性测试')
-        params=getParams.getParam_getReport(self.dbConfig,self.logicName,config.primid05)
+        params=getParams.getParam_getReport(config.consDBConf,self.logicName,config.primid05)
         result=httpRequest.postRequest(config.cons_url,params)
         self.assertEqual(result['code'],'00')
         self.assertEqual(result['message'],"请求成功")
@@ -35,7 +35,7 @@ class GetConsultationReportTest(unittest.TestCase):
     def test_null(self):
         ''' id传入空'''
         self.log.info(self.logicName+':id传入空')
-        params=getParams.getParam_getReport(self.dbConfig,self.logicName,'','')
+        params=getParams.getParam_getReport(config.consDBConf,self.logicName,'','')
         result=httpRequest.postRequest(config.cons_url,params)
         self.assertEqual(result['code'],'05')
         self.assertEqual(result['message'],"必填项为空")
@@ -44,7 +44,7 @@ class GetConsultationReportTest(unittest.TestCase):
     def test_error1(self):
         ''' id不存在'''
         self.log.info(self.logicName+':id不存在')
-        params=getParams.getParam_getReport(self.dbConfig,self.logicName,'','errorid')
+        params=getParams.getParam_getReport(config.consDBConf,self.logicName,'','errorid')
         result=httpRequest.postRequest(config.cons_url,params)
         self.assertEqual(result['code'],'12')
         self.assertEqual(result['message'],"主数据信息异常")
@@ -53,7 +53,7 @@ class GetConsultationReportTest(unittest.TestCase):
     def test_error2(self):
         ''' 报告不存在'''
         self.log.info(self.logicName+':报告不存在')
-        params=getParams.getParam_getReport(self.dbConfig,self.logicName,config.primid04)
+        params=getParams.getParam_getReport(config.consDBConf,self.logicName,config.primid04)
         result=httpRequest.postRequest(config.cons_url,params)
         self.assertEqual(result['message'],"没有查询到报告数据！")
 

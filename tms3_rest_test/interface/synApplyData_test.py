@@ -14,8 +14,8 @@ from public import log
 
 class ApplyDataSynTest(unittest.TestCase):
     """机构信息，申请端同步数据"""
-    def setUp(self):
-        self.dbConfig = "applyOracleConf"
+    @classmethod
+    def setUpClass(self):
         self.logicName = "applyDataSyn"
         self.log = log.setLog()
 
@@ -34,6 +34,7 @@ class ApplyDataSynTest(unittest.TestCase):
         result=httpRequest.postRequest(config.appdata_url,params)
         self.assertEqual(result['responseStatus'],'2')
         self.assertEqual(result['message'],"平台id为空！")
+
 
     @unittest.skip("无法测试")
     def test_fail(self):

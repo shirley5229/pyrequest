@@ -17,7 +17,8 @@ from public import log
 @ddt
 class SaveStatusTest(unittest.TestCase):
     """接收会诊状态,异常性测试"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.logicName = "saveStatus"
         self.log = log.setLog()
 

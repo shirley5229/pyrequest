@@ -18,7 +18,8 @@ from public import log
 @ddt
 class SaveConsultationTest(unittest.TestCase):
     """接受会诊申请,异常性测试"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.logicName = "saveConsultation"
         self.log = log.setLog()
 

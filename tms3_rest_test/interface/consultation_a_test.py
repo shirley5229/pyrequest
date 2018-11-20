@@ -19,7 +19,8 @@ from public import log
 @ddt
 class ConsultationProcessTest(unittest.TestCase):
     """正确性测试，会诊申请、附件补传、会诊取消"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.log = log.setLog()
 
     #操作步骤，

@@ -15,8 +15,8 @@ from public import log
 
 class DataSynTest(unittest.TestCase):
     """机构信息同步，获取会诊端数据"""
-    def setUp(self):
-        self.dbConfig = "consOracleConf"
+    @classmethod
+    def setUpClass(self):
         self.logicName = "dataSyn"
         self.log = log.setLog()
 
@@ -76,7 +76,7 @@ class DataSynTest(unittest.TestCase):
         params['messageId']=''
         datas={}
         if hospitalName:
-            consdata=test_data.gethospitalID(self.dbConfig,hospitalName)
+            consdata=test_data.gethospitalID(config.consDBConf,hospitalName)
             oradata = consdata['data'][0]
             datas['hospital_id']=oradata['hospitalID']
         datas['platform_id']=config.platform_id

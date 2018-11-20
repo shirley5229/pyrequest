@@ -19,7 +19,8 @@ from public import log
 @ddt
 class AcceptRejectTest(unittest.TestCase):
     """接收会诊退回,异常性测试"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.logicName = "acceptReject"
         self.log = log.setLog()
 

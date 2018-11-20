@@ -19,7 +19,8 @@ from public import log
 @ddt
 class ConsultationProcess2Test(unittest.TestCase):
     """正确性测试，状态变更"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.log = log.setLog()
 
     def test_statusSave1(self):

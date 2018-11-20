@@ -23,7 +23,7 @@ if __name__=="__main__":
     #删除会诊端数据
     #test_data.deleteConsData('onsOracleConf','20180611003')
     httpRequest.initData()
-
+    '''
     now = time.strftime("%Y-%m-%d %H_%M_%S")
     module_path = os.path.dirname(os.path.abspath(__file__))
     print(module_path)
@@ -34,3 +34,4 @@ if __name__=="__main__":
     runner.run(discover)
 
     fp.close()
+    '''

@@ -86,6 +86,7 @@ class DB:
             cursor.execute(real_sql)
         self.connection.commit()
         cursor.close()
+        self.close()
 
     def delete(self,table_name,whereCon):
         '''删除数据'''

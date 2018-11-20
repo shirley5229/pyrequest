@@ -17,7 +17,8 @@ from public import log
 @ddt
 class SaveConsultationFileTest(unittest.TestCase):
     """接受会诊附件补传,异常性测试"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.logicName = "saveConsultationFile"
         self.log = log.setLog()
 

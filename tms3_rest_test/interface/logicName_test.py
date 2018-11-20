@@ -13,7 +13,8 @@ from public import log
 class LogicNameTest(unittest.TestCase):
     """logicName测试"""
 
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.log = log.setLog()
 
     def test_fail1(self):

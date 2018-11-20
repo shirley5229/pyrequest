@@ -15,8 +15,8 @@ from public import log
 
 class TokenTest(unittest.TestCase):
     """获取token测试"""
-    def setUp(self):
-        self.dbConfig = "applyOracleConf"
+    @classmethod
+    def setUpClass(self):
         self.logicName = "createToken"
         self.log = log.setLog()
 
@@ -25,9 +25,9 @@ class TokenTest(unittest.TestCase):
         self.log.info(self.logicName+':正确性测试')
         params=self.getParam('上海交通大学医学院附属瑞金医院')
         result=httpRequest.postRequest(config.token_url,params)
-        self.assertEqual(result['responseStatus'],'1')
-        self.assertEqual(result['message'],"创建并获取token成功！")
-        self.assertTrue(result['data']['token_id']!='')
+        assert result['responseStatus'] == '1'
+        assert result['message'] == "创建并获取token成功！"
+        assert result['data']['token_id'] != ''
 
     def test_null(self):
         ''' 医院ID为空'''
@@ -53,7 +53,7 @@ class TokenTest(unittest.TestCase):
         params['messageId']=''
         datas={}
         if hospitalName:
-            consdata=test_data.gethospitalID(self.dbConfig,hospitalName)
+            consdata=test_data.gethospitalID(config.appDBConf,hospitalName)
             oradata = consdata['data'][0]
             datas['platform_id']=oradata['hospitalID']
         else:

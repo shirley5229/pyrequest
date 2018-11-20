@@ -15,7 +15,8 @@ from public import log
 
 class SendCancelConsultationTest(unittest.TestCase):
     """发起取消会诊,异常性测试"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.logicName = "sendCancelConsultation"
         self.log = log.setLog()
 

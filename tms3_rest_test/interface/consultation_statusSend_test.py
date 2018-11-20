@@ -17,7 +17,8 @@ from public import log
 @ddt
 class SendStatusTest(unittest.TestCase):
     """发出会诊状态,异常性测试"""
-    def setUp(self):
+    @classmethod
+    def setUpClass(self):
         self.logicName = "sendStatus"
         self.log = log.setLog()
 

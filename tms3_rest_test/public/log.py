@@ -7,7 +7,7 @@ from logbook.more import ColorizedStderrHandler
 from public import function
 
 def setLog():
-    logname=function.get_filepath("/report/logs/")+time.strftime('%Y-%m-%d') + '.log'
+    logname=function.get_filepath("/logs/")+time.strftime('%Y-%m-%d') + '.log'
     StreamHandler(sys.stdout).push_application()
     FileHandler(logname, bubble=True).push_application()
     log = Logger("")
